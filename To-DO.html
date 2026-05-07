@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-DO list</title>
+     <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            
+        }
+
+        .task-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover{
+            background-color: darkblue;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li{
+                background: #eee;
+                padding: 10px;
+                margin-top: 10px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+        }
+        li button {
+                background: red;
+                padding: 5px 10px;
+                border: none;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            li button:hover {
+                background: darkred;
+            }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h2>قائمة المهام</h2>
+
+        <div class="task-box">
+            <input type="text" id="taskInput" placeholder="ادخل مهمة جديده">
+            <button onclick="addtask()">أضافة مهمة</button>
+        </div>
+        <ul id="taskList">
+            
+        </ul>
+    </div>
+    <script>
+        function addtask(){
+            var taskInput = document.getElementById("taskInput");
+            var taskText = taskInput.value;
+
+            if(taskText === ""){
+                alert("اكتب مهمة اولا");
+                return;     
+            }
+           
+            var li = document.createElement('li');
+
+            li.innerHTML = 
+                `<span>${taskText}</span>
+                <button onclick="deleteTask(this)">حذف</button>
+            `;
+
+              document.getElementById("taskList").appendChild(li);
+
+               taskInput.value = "";
+
+               
+        }
+        function deleteTask(button){
+
+                button.parentElement.remove();
+                
+               }
+    </script>
+</body>
+</html>
